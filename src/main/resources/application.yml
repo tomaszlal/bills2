@@ -1,0 +1,10 @@
+server:
+  port: 9494
+spring:
+  datasource:
+    password: ZAQ123edc
+    username: bill_user
+    url: jdbc:mysql://localhost:3306/bills_2
+  jpa:
+    hibernate:
+      ddl-auto: create
