@@ -8,7 +8,7 @@ import java.time.LocalDate;
 public class BankAccountNumber {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(length = 26, nullable = false)
@@ -17,16 +17,18 @@ public class BankAccountNumber {
     //początek daty obowiązywania nr konta
     private LocalDate beginningDateValidityAccountNumber;
 
-    //aktualny numer rachunku
-    private Boolean currentAccountNumber;
 
     public BankAccountNumber() {
     }
 
-    public BankAccountNumber(String accountNumber, LocalDate beginningDateValidityAccountNumber, Boolean currentAccountNumber) {
+    public BankAccountNumber(String accountNumber, LocalDate beginningDateValidityAccountNumber) {
         this.accountNumber = accountNumber;
         this.beginningDateValidityAccountNumber = beginningDateValidityAccountNumber;
-        this.currentAccountNumber = currentAccountNumber;
+    }
+
+    public BankAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+        this.beginningDateValidityAccountNumber = LocalDate.now();
     }
 
     public Long getId() {
@@ -53,11 +55,5 @@ public class BankAccountNumber {
         this.beginningDateValidityAccountNumber = beginningDateValidityAccountNumber;
     }
 
-    public Boolean getCurrentAccountNumber() {
-        return currentAccountNumber;
-    }
 
-    public void setCurrentAccountNumber(Boolean currentAccountNumber) {
-        this.currentAccountNumber = currentAccountNumber;
-    }
 }

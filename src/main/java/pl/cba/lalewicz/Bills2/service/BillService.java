@@ -2,12 +2,13 @@ package pl.cba.lalewicz.Bills2.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.cba.lalewicz.Bills2.repository.BankAccountNumberDao;
+import pl.cba.lalewicz.Bills2.repository.BillDao;
 
 @Service
-public class BankAccountNumerService {
+public class BillService {
 
     @Autowired
-    private BankAccountNumberDao bankAccountNumberDao;
+    private BillDao billDao;
+
 
 }
