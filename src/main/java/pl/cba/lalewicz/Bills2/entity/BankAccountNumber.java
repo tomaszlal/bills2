@@ -55,5 +55,12 @@ public class BankAccountNumber {
         this.beginningDateValidityAccountNumber = beginningDateValidityAccountNumber;
     }
 
-
+    @Override
+    public String toString() {
+        return "BankAccountNumber{" +
+                "id=" + id +
+                ", accountNumber='" + accountNumber + '\'' +
+                ", beginningDateValidityAccountNumber=" + beginningDateValidityAccountNumber +
+                '}';
+    }
 }

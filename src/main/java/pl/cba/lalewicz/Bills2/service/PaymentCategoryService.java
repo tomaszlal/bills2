@@ -26,4 +26,8 @@ public class PaymentCategoryService {
         return paymentCategoryDao.save(paymentCategory);
     }
 
+    public PaymentCategory updatePaymentCategory (PaymentCategory paymentCategory){
+        return paymentCategoryDao.save(paymentCategory);
+    }
+
 }

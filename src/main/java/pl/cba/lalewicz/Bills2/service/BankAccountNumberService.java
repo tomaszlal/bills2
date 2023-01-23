@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import pl.cba.lalewicz.Bills2.entity.BankAccountNumber;
 import pl.cba.lalewicz.Bills2.repository.BankAccountNumberDao;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +18,11 @@ public class BankAccountNumberService {
 
     //add new or account number
     public BankAccountNumber addBankAccountNumber (BankAccountNumber bankAccountNumber){
+        if (bankAccountNumber.getBeginningDateValidityAccountNumber() == null){
+            bankAccountNumber.setBeginningDateValidityAccountNumber(LocalDate.now());
+        }
+
+//        System.out.println(bankAccountNumber);
         return bankAccountNumberDao.save(bankAccountNumber);
     }
 

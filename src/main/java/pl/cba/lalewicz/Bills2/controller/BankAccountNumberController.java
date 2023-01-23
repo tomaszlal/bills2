@@ -1,15 +1,14 @@
 package pl.cba.lalewicz.Bills2.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.cba.lalewicz.Bills2.entity.BankAccountNumber;
 import pl.cba.lalewicz.Bills2.service.BankAccountNumberService;
 
+import java.time.LocalDate;
 import java.util.List;
 
+@CrossOrigin
 @RestController
 public class BankAccountNumberController {
 

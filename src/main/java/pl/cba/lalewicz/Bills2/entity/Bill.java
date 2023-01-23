@@ -19,7 +19,7 @@ public class Bill {
     private LocalDate dateOfPayment;     // data zaplaty z afakture
     private boolean wasPaid;        //czy został opłacony domyślnnie false
     @ManyToOne
-    private BankAccountNumber paymentAccountNumber;    //nr konta do płatności
+    private BankAccountNumber paymentAccountNumber;    //nr aktualny lub opłacony konta do płatności
 
     public Bill(PaymentCategory paymentCategory, String invoiceNumber, double amount, LocalDate dateOfIssue, LocalDate dueDate, LocalDate dateOfPayment, boolean wasPaid, BankAccountNumber paymentAccountNumber) {
         this.paymentCategory = paymentCategory;
@@ -30,6 +30,16 @@ public class Bill {
         this.dateOfPayment = dateOfPayment;
         this.wasPaid = wasPaid;
         this.paymentAccountNumber = paymentAccountNumber;
+    }
+    public Bill(PaymentCategory paymentCategory, String invoiceNumber, double amount, LocalDate dateOfIssue, LocalDate dueDate, LocalDate dateOfPayment) {
+        this.paymentCategory = paymentCategory;
+        this.invoiceNumber = invoiceNumber;
+        this.amount = amount;
+        this.dateOfIssue = dateOfIssue;
+        this.dueDate = dueDate;
+        this.dateOfPayment = dateOfPayment;
+        this.wasPaid = false;
+        this.paymentAccountNumber = paymentCategory.getBankAccountNumber();
     }
 
     public Bill() {
