@@ -23,4 +23,9 @@ public class BankAccountNumberController {
     public List<BankAccountNumber> getBankAccountNumberList() {
         return bankAccountNumberService.getAllBankAccountNumberList();
     }
+
+    @PutMapping("/update/bankaccountnumber")
+    public BankAccountNumber updateBankAccountNumber(@RequestBody BankAccountNumber bankAccountNumber){
+        return bankAccountNumberService.updateBankAccountNumber(bankAccountNumber);
+    }
 }
