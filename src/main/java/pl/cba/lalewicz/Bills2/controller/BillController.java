@@ -22,6 +22,11 @@ public class BillController {
         return billService.getBillList();
     }
 
+    @GetMapping("/get/bill/{categoryId}")
+    public List<Bill> getBillListByCategoryId(@PathVariable long categoryId){
+        return billService.getBillListByCategory(categoryId);
+    }
+
     @GetMapping("/get/billpage")
     public Page<Bill> getBillPage(@RequestParam("page") int page,@RequestParam("size") int size){
         return billService.getBillPages(page, size);
@@ -30,5 +35,15 @@ public class BillController {
     @PostMapping("/add/bill")
     public Bill addBill(@RequestBody Bill bill){
         return billService.addBill(bill);
+    }
+
+    @DeleteMapping("/del/bill/{billId}")
+    public boolean deleteBill(@PathVariable("billId") long billId) {
+        return billService.deleteBill(billId);
+    }
+
+    @PutMapping("/update/bill")
+    public Bill updateBill(@RequestBody Bill bill){
+        return billService.updateBill(bill);
     }
 }

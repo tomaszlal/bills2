@@ -21,7 +21,7 @@ public class Bill {
     @ManyToOne
     private BankAccountNumber paymentAccountNumber;    //nr aktualny lub opłacony konta do płatności
 
-    public Bill(PaymentCategory paymentCategory, String invoiceNumber, double amount, LocalDate dateOfIssue, LocalDate dueDate, LocalDate dateOfPayment, boolean wasPaid, BankAccountNumber paymentAccountNumber) {
+    public Bill(PaymentCategory paymentCategory, String invoiceNumber, double amount, LocalDate dateOfIssue,  LocalDate dateOfPayment, LocalDate dueDate, boolean wasPaid, BankAccountNumber paymentAccountNumber) {
         this.paymentCategory = paymentCategory;
         this.invoiceNumber = invoiceNumber;
         this.amount = amount;
@@ -31,7 +31,7 @@ public class Bill {
         this.wasPaid = wasPaid;
         this.paymentAccountNumber = paymentAccountNumber;
     }
-    public Bill(PaymentCategory paymentCategory, String invoiceNumber, double amount, LocalDate dateOfIssue, LocalDate dueDate, LocalDate dateOfPayment) {
+    public Bill(PaymentCategory paymentCategory, String invoiceNumber, double amount, LocalDate dateOfIssue,  LocalDate dateOfPayment) {
         this.paymentCategory = paymentCategory;
         this.invoiceNumber = invoiceNumber;
         this.amount = amount;

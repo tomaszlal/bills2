@@ -6,7 +6,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import pl.cba.lalewicz.Bills2.entity.Bill;
+import pl.cba.lalewicz.Bills2.entity.PaymentCategory;
 import pl.cba.lalewicz.Bills2.repository.BillDao;
+import pl.cba.lalewicz.Bills2.repository.PaymentCategoryDao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +18,9 @@ public class BillService {
 
     @Autowired
     private BillDao billDao;
+
+    @Autowired
+    private PaymentCategoryDao categoryDao;
 
     //dodanie nowego rachunku
     public Bill addBill(Bill bill){
@@ -29,5 +34,23 @@ public class BillService {
     public Page<Bill> getBillPages(int page, int size){
         Pageable pageable = PageRequest.of(page,size);
         return billDao.findAll(pageable);
+    }
+
+    public List<Bill> getBillListByCategory(Long categoryId){
+        PaymentCategory paymentCategory = categoryDao.findById(categoryId).get();
+        if (paymentCategory==null) return billDao.findAll();
+        else return billDao.findByPaymentCategory(paymentCategory);
+    }
+
+    public boolean deleteBill(Long id) {
+       if (billDao.existsById(id)){
+           billDao.deleteById(id);
+           return true;
+       }
+       return false;
+    }
+
+    public Bill updateBill(Bill bill){
+        return billDao.save(bill);
     }
 }

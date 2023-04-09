@@ -41,11 +41,12 @@ public class MainController {
         PaymentCategory pay1 = paymentCategoryService.addPaymentCategory(new PaymentCategory("Woda","gmina",bNb2));
         PaymentCategory pay2 = paymentCategoryService.addPaymentCategory(new PaymentCategory("Gaz","pegenige",bNb3));
         Bill bil1 = billService.addBill(new Bill(pay2,"fv 34985349/56",156.58,LocalDate.of(2022,12,26),
-                LocalDate.of(2022,12,26),LocalDate.of(2023,01,01)));
+                LocalDate.of(2022,12,26)));
         Bill bil2 = billService.addBill(new Bill(pay1,"factu 57577575",36.87,LocalDate.of(2022,12,25),
-                LocalDate.of(2022,12,24),LocalDate.of(2023,01,01)));
+                LocalDate.of(2022,12,24)));
         Bill bil3 = billService.addBill(new Bill(pay2,"43543646455",454.9,LocalDate.of(2022,12,24),
-                LocalDate.of(2022,12,25),LocalDate.of(2023,01,01)));
+                LocalDate.of(2022,12,25)));
+
     }
 
     @GetMapping("/")
