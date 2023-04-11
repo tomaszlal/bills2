@@ -46,16 +46,20 @@ public class MainController {
                 LocalDate.of(2022,12,24)));
         Bill bil3 = billService.addBill(new Bill(pay2,"43543646455",454.9,LocalDate.of(2022,12,24),
                 LocalDate.of(2022,12,25)));
+        BankAccountNumber bnkrfc = bankAccountNumberService.addBankAccountNumber(new BankAccountNumber("42249010283115000000045230"));
+        PaymentCategory payrfc = paymentCategoryService.addPaymentCategory(new PaymentCategory("Internet","RFC Marcin Frątczak",bnkrfc));
+        billService.addBill(new Bill(payrfc,"Opłata za FV 11251/04/2023/RFCMF",49.00,LocalDate.of(2022,12,25),
+                LocalDate.of(2022,12,24)));
 
     }
 
-    @GetMapping("/")
-    public ResponseEntity<byte[]> test() throws IOException, WriterException {
+    @GetMapping("/qrcode/{billId}")
+    public ResponseEntity<byte[]> generateQRCode(@PathVariable long billId ) throws IOException, WriterException {
         MediaType contentType = MediaType.IMAGE_PNG;
 
-        byte[] file = QRCode.generate();
+//        byte[] file = QRCode.generate();
+        byte[] file = billService.getQRCodeById(billId);
 
-//        return new ResponseEntity<>(file,contentType,HttpStatus.OK);  to nie
         return ResponseEntity.ok().contentType(contentType).body(file);
     }
 

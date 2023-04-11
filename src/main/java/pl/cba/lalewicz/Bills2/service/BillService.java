@@ -1,15 +1,18 @@
 package pl.cba.lalewicz.Bills2.service;
 
+import com.google.zxing.WriterException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import pl.cba.lalewicz.Bills2.Utils.QRCode;
 import pl.cba.lalewicz.Bills2.entity.Bill;
 import pl.cba.lalewicz.Bills2.entity.PaymentCategory;
 import pl.cba.lalewicz.Bills2.repository.BillDao;
 import pl.cba.lalewicz.Bills2.repository.PaymentCategoryDao;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,5 +55,18 @@ public class BillService {
 
     public Bill updateBill(Bill bill){
         return billDao.save(bill);
+    }
+
+    public Bill getBillById(Long id){
+        return billDao.findById(id).get();
+    }
+
+    public byte[] getQRCodeById(Long id) throws IOException, WriterException {
+        Bill bill = billDao.findById(id).get();
+        String textToQRCode = "|PL|" + bill.getPaymentAccountNumber().getAccountNumber()+ "|"
+                + ((int)(bill.getAmount()*1000))/10+"|"+bill.getPaymentCategory().getRecipient()+"|"
+                +bill.getInvoiceNumber()+"|||";
+//        System.out.println(textToQRCode);
+        return QRCode.generate(textToQRCode);
     }
 }
